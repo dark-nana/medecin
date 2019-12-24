@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+{% block title %}affiche medecin{% endblock %}
+
+{% block body %}
+    <div class="container">
+    <table style="background-color: deepskyblue">
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>Matricule</th>
+                <th>Prenom</th>
+                <th>Nom</th>
+                <th>Telephone</th>
+                <th>Date</th>
+                <th>Services</th>
+                <th>Specialites</th>
+            </tr>
+        </thead>
+        <tbody class="container" style="border:0.1em solid black">
+                {% for Medecin in Mede %}
+                <tr>
+                    <td scope="row">{{Medecin.id}}</td>
+                    <td>{{Medecin.Matricule}}</td>
+                    <td>{{Medecin.Prenom}}</td>
+                    <td>{{Medecin.Nom}}</td>
+                    <td>{{Medecin.Telephone}}</td>
+                    <td>{{Medecin.Date|date("m/d/Y")}}</td>
+                    <td>{{Medecin.Service.libelle}}</td>
+                    <td>{{Medecin.Specialite.libelle}}</td>
+                    <td><a href="{{ path('medecin_edit',{'id':Medecin.id}) }}" class="btn btn-primary">modifier</a></td>
+                    <td><a href="{{ path('medecin_delete',{'id':Medecin.id}) }}" class="btn btn-secondary">suprimer</a></td>
+                </tr>
+                {% endfor %}
+        </tbody>
+    </table>
+    </div>
+{% endblock %}
